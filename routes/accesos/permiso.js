@@ -30,5 +30,4 @@ router.get('/listar_asociados/:sistema_id/:rol_id', function(request, response, 
     })
 });
 
-
 module.exports = router;

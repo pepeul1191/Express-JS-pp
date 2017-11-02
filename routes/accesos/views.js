@@ -21,7 +21,6 @@ router.get('/', function(request, response, next) {
         }),
         'js_bottom' : 'dist/accesos.min.js',
     };
-
     response.render('accesos/index', { title: 'Accesos',  data: data});
 });
 

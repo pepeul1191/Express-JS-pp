@@ -78,6 +78,7 @@ const Item = db.define('items', {
 });
 
 exports.db = db;
+
 exports.acceso = Acceso;
 exports.estado_usuario = EstadoUsuario;
 exports.item = Item;
