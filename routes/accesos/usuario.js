@@ -12,4 +12,13 @@ router.get('/listar', function(request, response, next) {
     })
 });
 
+router.get('/obtener_usuario_correo/:usuario_id', function(request, response, next) {
+    models.usuario.findOne({   
+        attributes: ['usuario', 'correo'] ,
+        where: { id : request.params.usuario_id }
+    }).then(function (usuario) {
+        response.send(JSON.stringify(usuario));
+    });
+});
+
 module.exports = router;
