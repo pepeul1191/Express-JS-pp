@@ -7,7 +7,10 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var accesos_modulo = require('./routes/accesos/modulo');
+var accesos_item = require('./routes/accesos/item');
 var accesos_sistema = require('./routes/accesos/sistema');
+var accesos_subtitulo = require('./routes/accesos/subtitulo');
 var accesos_usuario = require('./routes/accesos/usuario');
 var accesos_views = require('./routes/accesos/views');
 
@@ -27,7 +30,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/accesos/item', accesos_item);
+app.use('/accesos/modulo', accesos_modulo);
 app.use('/accesos/sistema', accesos_sistema);
+app.use('/accesos/subtitulo', accesos_subtitulo);
 app.use('/accesos/usuario', accesos_usuario);
 app.use('/accesos', accesos_views);
 

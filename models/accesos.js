@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-var database = require('./database');
+var database = require('../configs/database');
 
 var db = database.db;
 
@@ -35,8 +35,27 @@ const Modulo = db.define('modulos', {
 	}},
 });
 
+const Subtitulo = db.define('subtitulos', {
+	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+	nombre: { type: Sequelize.STRING, allowNull: false,  },
+	modulo_id: { type: Sequelize.INTEGER, references: {
+		model: Modulo, key: 'id', deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	}},
+});
+
+const Item = db.define('items', {
+	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+	nombre: { type: Sequelize.STRING, allowNull: false,  },
+	url: { type: Sequelize.STRING },
+	subtitulo_id: { type: Sequelize.INTEGER, references: {
+		model: Subtitulo, key: 'id', deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	}},
+});
+
 exports.db = db;
 exports.usuario = Usuario;
 exports.sistema = Sistema;
 exports.modulo = Modulo;
+exports.subtitulo = Subtitulo;
+exports.item = Item;
 exports.estado_usuario = EstadoUsuario;

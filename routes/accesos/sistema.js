@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../../configs/models_accesos');
+var models = require('../../models/accesos');
 
 router.get('/listar', function(request, response, next) {
     models.sistema.findAll({
