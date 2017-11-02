@@ -8,9 +8,9 @@
 <script type="text/javascript">
     var BASE_URL = '<%= data["base_url"] %>';
     var STATICS_URL  = '<%= data["static_url"] %>';
-    var MODULOS_JSON = JSON.parse('<%= data["menu"] %>');
-    var ITEMS_JSON = JSON.parse('<%= data["items"] %>');
-    var DATA = JSON.parse('<%= data["data"] %>');
+    var MODULOS_JSON = JSON.parse('<%- data["menu"] %>');
+    var ITEMS_JSON = JSON.parse('<%- data["items"] %>');
+    var DATA = JSON.parse('<%- data["data"] %>');
     var CSRF = '';
 </script>
 </head>
