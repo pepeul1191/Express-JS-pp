@@ -21,4 +21,13 @@ router.get('/obtener_usuario_correo/:usuario_id', function(request, response, ne
     });
 });
 
+router.get('/logs/:usuario_id', function(request, response, next) {
+    models.acceso.findAll({   
+        attributes: ['id', 'momento'] ,
+        where: { usuario_id : request.params.usuario_id }
+    }).then(function (logs) {
+        response.send(JSON.stringify(logs));
+    });
+});
+
 module.exports = router;

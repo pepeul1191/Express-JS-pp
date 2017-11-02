@@ -18,6 +18,14 @@ const Usuario = db.define('usuarios', {
 	}},
 });
 
+const Acceso = db.define('accesos', {
+	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+	momento: { type: Sequelize.STRING },
+	usuario_id: { type: Sequelize.INTEGER, references: {
+		model: Usuario, key: 'id', deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	}},
+});
+
 const Sistema = db.define('sistemas', {
 	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
 	nombre: { type: Sequelize.STRING, allowNull: false,  },
@@ -69,8 +77,10 @@ const Item = db.define('items', {
 	}},
 });
 
-exports.db = db;
 
+
+exports.db = db;
+exports.acceso = Acceso;
 exports.estado_usuario = EstadoUsuario;
 exports.item = Item;
 exports.modulo = Modulo;
