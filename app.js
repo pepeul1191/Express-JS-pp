@@ -9,6 +9,8 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var accesos_modulo = require('./routes/accesos/modulo');
 var accesos_item = require('./routes/accesos/item');
+var accesos_permiso = require('./routes/accesos/permiso');
+var accesos_rol = require('./routes/accesos/rol');
 var accesos_sistema = require('./routes/accesos/sistema');
 var accesos_subtitulo = require('./routes/accesos/subtitulo');
 var accesos_usuario = require('./routes/accesos/usuario');
@@ -33,6 +35,8 @@ app.use('/users', users);
 // ACCESOS
 app.use('/accesos/item', accesos_item);
 app.use('/accesos/modulo', accesos_modulo);
+app.use('/accesos/permiso', accesos_permiso);
+app.use('/accesos/rol', accesos_rol);
 app.use('/accesos/sistema', accesos_sistema);
 app.use('/accesos/subtitulo', accesos_subtitulo);
 app.use('/accesos/usuario', accesos_usuario);

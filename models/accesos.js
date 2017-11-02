@@ -25,6 +25,23 @@ const Sistema = db.define('sistemas', {
 	repositorio: { type: Sequelize.STRING },
 });
 
+const Rol = db.define('roles', {
+	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+	nombre: { type: Sequelize.STRING, allowNull: false,  },
+	llave: { type: Sequelize.STRING, allowNull: false,  },
+	sistema_id: { type: Sequelize.INTEGER, references: {
+		model: Sistema, key: 'id', deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	}},
+});
+
+const Permiso = db.define('permisos', {
+	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+	nombre: { type: Sequelize.STRING, allowNull: false,  },
+	sistema_id: { type: Sequelize.INTEGER, references: {
+		model: Sistema, key: 'id', deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
+	}},
+});
+
 const Modulo = db.define('modulos', {
 	id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
 	nombre: { type: Sequelize.STRING, allowNull: false,  },
@@ -53,9 +70,12 @@ const Item = db.define('items', {
 });
 
 exports.db = db;
-exports.usuario = Usuario;
-exports.sistema = Sistema;
-exports.modulo = Modulo;
-exports.subtitulo = Subtitulo;
-exports.item = Item;
+
 exports.estado_usuario = EstadoUsuario;
+exports.item = Item;
+exports.modulo = Modulo;
+exports.permiso = Permiso;
+exports.rol = Rol;
+exports.sistema = Sistema;
+exports.subtitulo = Subtitulo;
+exports.usuario = Usuario;
