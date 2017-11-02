@@ -30,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+// ACCESOS
 app.use('/accesos/item', accesos_item);
 app.use('/accesos/modulo', accesos_modulo);
 app.use('/accesos/sistema', accesos_sistema);
