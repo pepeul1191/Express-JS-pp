@@ -6,7 +6,7 @@ router.get('/listar', function(request, response, next) {
     models.sistema.findAll({
         attributes: ['id', 'nombre', 'version', 'repositorio']
     }).then(function (sistemas) {
-        response.send(sistemas);
+        response.send(JSON.stringify(sistemas));
     });
 });
 
