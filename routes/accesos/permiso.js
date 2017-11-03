@@ -3,10 +3,7 @@ var router = express.Router();
 var models = require('../../models/accesos');
 
 router.get('/listar/:sistema_id', function(request, response, next) {
-    models.permiso.findAll({   
-        attributes: ['id', 'nombre', 'llave'] ,
-        where: { sistema_id : request.params.sistema_id }
-    }).then(function (permisos) {
+    models.permiso.findAll({attributes: ['id', 'nombre', 'llave'] , where: { sistema_id : request.params.sistema_id }}).then(function (permisos) {
         response.send(JSON.stringify(permisos));
     });
 });

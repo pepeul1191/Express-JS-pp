@@ -14,19 +14,13 @@ router.get('/listar', function(request, response, next) {
 });
 
 router.get('/obtener_usuario_correo/:usuario_id', function(request, response, next) {
-    models.usuario.findOne({   
-        attributes: ['usuario', 'correo'] ,
-        where: { id : request.params.usuario_id }
-    }).then(function (usuario) {
+    models.usuario.findOne({attributes: ['usuario', 'correo'] , where: { id : request.params.usuario_id }}).then(function (usuario) {
         response.send(JSON.stringify(usuario));
     });
 });
 
 router.get('/logs/:usuario_id', function(request, response, next) {
-    models.acceso.findAll({   
-        attributes: ['id', 'momento'] ,
-        where: { usuario_id : request.params.usuario_id }
-    }).then(function (logs) {
+    models.acceso.findAll({attributes: ['id', 'momento'] , where: { usuario_id : request.params.usuario_id }}).then(function (logs) {
         response.send(JSON.stringify(logs));
     });
 });
