@@ -35,21 +35,23 @@ router.post('/guardar', function(request, response, next) {
          });
         return Promise.all(promises).then(function(nuevos_promises) {
             var promises = [];
+            var i = 0;
             nuevos_promises.forEach(function(promise){
-                promises.push(promise['id']);
+                var temp = {'temporal': nuevos[i]['id'] ,'nuevo_id': promise['id']};
+                promises.push(temp);
+                i = i + 1;
             });
             return Promise.all(promises);
         });
     }).then(function (result) {
-        console.log("++++++++ 1. RESULT ++++++++");
-        console.log(result);
-        console.log("++++++++ 2. RESULT ++++++++");
-        response.send(JSON.stringify(result));
+        var rpta = {'tipo_mensaje' :  'success', 'mensaje' : ["Se ha registrado los cambios en los subtitulos", result]};
+        response.send(JSON.stringify(rpta));
     }).catch(function (err) {
-        console.log("++++++++ 1. ERR ++++++++");
-        console.log(err);
-        response.send('error!!!');
-        console.log("++++++++ 2. ERR ++++++++");
+        var errores = [];
+        err.errors.forEach(function(error){
+            errores = error.message;
+        });
+        response.send(errores);
     });
 });
 
