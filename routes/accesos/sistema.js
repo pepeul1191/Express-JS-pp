@@ -26,9 +26,9 @@ router.post('/guardar', function(request, response, next) {
     var eliminados = data['eliminados'];
     var rpta = []; var array_nuevos = [];
     //http://docs.sequelizejs.com/manual/tutorial/transactions.html
-    /*
     rpta = models.db.transaction(function (t) {
         nuevos.forEach(function(nuevo) {
+            console.log(nuevo);
             models.sistema.create({
                 nombre: nuevo['nombre'],
                 version: nuevo['version'],
@@ -36,24 +36,25 @@ router.post('/guardar', function(request, response, next) {
             });
         });
         editados.forEach(function(editado) {
-            models.sistema.findOne(
-                    { where: { id: editado['id'] } }
-                ).on('success', function (sistema) {
-                    if (sistema) {
-                        sistema.updateAttributes({
-                            nombre: editado['nombre'],
-                            version: editado['version'],
-                            repositorio: editado['repositorio']
-                        }).success(function () {
-                            console.log("XD");
-                        })
+            console.log(editado);
+            models.db.update({
+                    nombre: editado['nombre'],
+                    version: editado['version'],
+                    repositorio: editado['repositorio']
+                }, {
+                    where: { 
+                        id: editado['id'] 
                     }
-                });
+              });
         });
         eliminados.forEach(function(eliminado) {
             console.log(eliminado);
+            models.sistema.destroy({
+                where: {
+                    id: eliminado
+                }
+            })
         });
-        */
     }).then(function (result) {
         // Transaction has been committed
         // result is whatever the result of the promise chain returned to the transaction callback
